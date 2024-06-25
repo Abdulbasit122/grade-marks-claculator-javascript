@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      input {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #28a745;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      .result {
+        margin-top: 20px;
+        font-size: 1.2em;
+        color: #333;
+      }
+      .error {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Grade Calculator</h1>
+      <input
+        type="text"
+        id="marksInput"
+        placeholder="Enter your marks (out of 100)"
+      />
+      <button onclick="calculateGrade()">Calculate Grade</button>
+      <div id="result" class="result"></div>
+    </div>
+
+    <script>
+      function calculateGrade() {
+        const marks = parseFloat(document.getElementById("marksInput").value);
+        const resultDiv = document.getElementById("result");
+
+        if (isNaN(marks)) {
+          resultDiv.innerHTML =
+            "<span class='error'>Error: Please enter a valid number.</span>";
+          return;
+        }
+
+        if (marks < 0 || marks > 100) {
+          resultDiv.innerHTML =
+            "<span class='error'>Error: Marks should be between 0 and 100.</span>";
+          return;
+        }
+
+        let grade;
+        if (marks >= 90) {
+          grade = "A";
+        } else if (marks >= 80) {
+          grade = "B";
+        } else if (marks >= 70) {
+          grade = "C";
+        } else if (marks >= 60) {
+          grade = "D";
+        } else {
+          grade = "F";
+        }
+
+        resultDiv.innerHTML = `Your grade is <strong>${grade}</strong>`;
+      }
+    </script>
+  </body>
+</html>
